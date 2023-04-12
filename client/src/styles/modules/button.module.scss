@@ -1,0 +1,57 @@
+.button {
+	display: inline-block;
+	height: 45px;
+	padding: 0.8rem 2rem;
+	border: none;
+	border-radius: 6px;
+	font-weight: 500;
+	font-size: 1.6rem;
+	text-decoration: none;
+	text-transform: capitalize;
+	cursor: pointer;
+	overflow: hidden;
+
+	&:hover {
+		scale: 0.9;
+		transition: all;
+		transition-duration: 500ms;
+	}
+
+	&__select {
+		color: var(--black-2);
+		font-family: Poppins;
+		padding: 1rem;
+		outline-color: var(--primaryPurple);
+		border: none;
+		background-color: var(--bg-3);
+		width: 150px;
+		height: 45px;
+		cursor: pointer;
+
+		&:hover {
+			scale: 0.9;
+			transition: all;
+			transition-duration: 500ms;
+		}
+	}
+}
+
+.buttonPrimary {
+	background-color: var(--primaryPurple);
+	color: var(--white);
+
+	&:hover {
+		background-color: var(--bg-3);
+		color: var(--black-2);
+	}
+}
+
+.buttonSecondary {
+	background-color: var(--bg-3);
+	color: var(--black-2);
+
+	&:hover {
+		background-color: var(--primaryPurple);
+		color: var(--white);
+	}
+}

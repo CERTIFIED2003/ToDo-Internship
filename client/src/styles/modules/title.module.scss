@@ -1,0 +1,26 @@
+@import '../smallDevice.scss';
+
+.title {
+	display: inline-block;
+	width: 100%;
+	font-family: 'Poppins';
+	font-size: 4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+	color: var(--primaryPurple);
+	cursor: pointer;
+
+	&:hover {
+		transition: all;
+		scale: 0.9;
+		transition-duration: 500ms;
+	}
+
+	@include smallDeviceSize {
+		font-size: 3rem;
+	}
+}

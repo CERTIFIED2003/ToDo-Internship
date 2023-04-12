@@ -1,7 +1,18 @@
+import style from "./styles/modules/app.module.scss";
+import {
+  Title,
+  Header,
+  ListContainer
+} from "./components"
+
 const App = () => {
   return (
     <div>
-      Hello World!
+      <Title title="TODO APP" />
+      <div className={style.appWrapper}>
+        <Header />
+        <ListContainer />
+      </div>
     </div>
   )
 }
