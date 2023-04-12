@@ -1,8 +1,29 @@
 import style from "../styles/modules/modal.module.scss";
 import { MdOutlineClose } from "react-icons/md";
 import { ClickButton } from "./Button";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/slices/todoSlice";
+import { v4 as uuid } from "uuid";
 
 const TodoModal = ({ setOpenModal }) => {
+    const [title, setTitle] = useState("");
+    const [status, setStatus] = useState("pending");
+    const dispatch = useDispatch() ;
+
+    const handleCreateTask = (e) => {
+        e.preventDefault();
+        
+        if (title && status) {
+            dispatch(addTodo({
+                id: uuid(),
+                title,
+                status,
+                time: new Date().toLocaleDateString(),
+            }));
+        }
+    };
+
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -15,7 +36,7 @@ const TodoModal = ({ setOpenModal }) => {
                     <MdOutlineClose />
                 </div>
                 {/* Add Task Form */}
-                <form className={style.form}>
+                <form className={style.form} onSubmit={(e) => handleCreateTask(e)}>
                     <h1 className={style.formTitle}>
                         Create Task
                     </h1>
@@ -24,6 +45,8 @@ const TodoModal = ({ setOpenModal }) => {
                         Title
                         <input
                             id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </label>
                     {/* Select for Task's Status */}
@@ -32,6 +55,8 @@ const TodoModal = ({ setOpenModal }) => {
                         <select
                             name="status"
                             id="status"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
                         >
                             <option value="pending">Pending</option>
                             <option value="canceled">Canceled</option>
