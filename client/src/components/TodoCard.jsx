@@ -5,14 +5,16 @@ import { MdDelete, MdEdit, MdOutlinePendingActions } from "react-icons/md";
 import { BsCheck2All } from "react-icons/bs";
 import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../redux/slices/todoSlice";
+import { deleteTodo, updateTodo } from "../redux/slices/todoSlice";
 import { toast } from "react-hot-toast";
 import TodoModal from "./TodoModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CheckButton } from "./Button";
 
 const TodoCard = ({ todo }) => {
     const dispatch = useDispatch();
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
+    const [checked, setChecked] = useState(false);
 
     const handleDeleteTodo = () => {
         dispatch(deleteTodo(todo.id));
@@ -23,11 +25,25 @@ const TodoCard = ({ todo }) => {
         setUpdateModalOpen(true);
     };
 
+    const handleUpdateCheck = () => {
+        setChecked(prev => !prev);
+        dispatch(updateTodo({
+            ...todo,
+            status: checked ? "pending" : "completed",
+            time: new Date().toLocaleString(),
+        }));
+    };
+
+    useEffect(() => {
+        if (todo.status === "completed") setChecked(true);
+        else setChecked(false);
+    }, [todo.status]);
+
     return (
         <>
             <div className={style.item}>
                 <div className={style.todoDetails}>
-                    [ ]
+                    <CheckButton checked={checked} handleUpdateCheck={handleUpdateCheck} />
                     <div className={style.text} onClick={handleEditTodo}>
                         <p className={
                             getClasses([style.todoText,
@@ -49,26 +65,28 @@ const TodoCard = ({ todo }) => {
                             {format(new Date(todo.time), "p, dd/MM/yyyy")}
                         </p>
                     </div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     {
                         todo.status === "completed" ? <BsCheck2All size={20} />
                             : todo.status === "pending" ? <MdOutlinePendingActions size={20} style={{ opacity: "0.65" }} />
-                                : <TfiClose size={15} />
+                                : <TfiClose size={19} />
                     }
-                </div>
-                <div className={style.todoActions}>
-                    <div
-                        className={style.icon}
-                        onClick={handleDeleteTodo}
-                        role="button"
-                    >
-                        <MdDelete />
-                    </div>
-                    <div
-                        className={style.icon}
-                        onClick={handleEditTodo}
-                        role="button"
-                    >
-                        <MdEdit />
+                    <div className={style.todoActions}>
+                        <div
+                            className={style.icon}
+                            onClick={handleDeleteTodo}
+                            role="button"
+                        >
+                            <MdDelete />
+                        </div>
+                        <div
+                            className={style.icon}
+                            onClick={handleEditTodo}
+                            role="button"
+                        >
+                            <MdEdit />
+                        </div>
                     </div>
                 </div>
             </div>

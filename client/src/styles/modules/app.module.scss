@@ -14,13 +14,14 @@
 	margin: 10px;
 }
 
-.content__wrapper {
+.contentWrapper {
 	background-color: var(--bg-2);
 	padding: 2rem;
+	margin: 10px;
 	border-radius: 12px;
 
 	@include smallDeviceSize {
-		padding: 1.5rem;
+		padding: 1rem;
 	}
 }
 
