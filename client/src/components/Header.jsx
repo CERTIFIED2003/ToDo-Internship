@@ -4,7 +4,7 @@ import TodoModal from "./TodoModal";
 import { useState } from "react";
 
 const Header = () => {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className={style.appHeader}>
@@ -13,6 +13,7 @@ const Header = () => {
         text="Create ToDo"
         variant="buttonPrimary"
         type="button"
+        onClick={() => setOpenModal(true)}
       />
 
       {/* Select tag for displaying sorted task list based on their status ( pending, canceled, completed ) */}

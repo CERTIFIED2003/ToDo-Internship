@@ -10,6 +10,7 @@ const TodoModal = ({ setOpenModal }) => {
                 <div
                     className={style.closeBtn}
                     onClick={() => setOpenModal(false)}
+                    role="button"
                 >
                     <MdOutlineClose />
                 </div>
@@ -38,6 +39,13 @@ const TodoModal = ({ setOpenModal }) => {
                         </select>
                     </label>
                     <div className={style.buttonContainer}>
+                        <ClickButton
+                            text="Close"
+                            variant="buttonSecondary"
+                            type="button"
+                            onClick={() => setOpenModal(false)}
+                            role="button"
+                        />
                         <ClickButton
                             text="Add Task"
                             variant="buttonPrimary"

@@ -2,7 +2,8 @@ import style from "./styles/modules/app.module.scss";
 import {
   Title,
   Header,
-  ListContainer
+  ListContainer,
+  Authentication
 } from "./components"
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
         <Header />
         <ListContainer />
       </div>
+      {/* <Authentication /> */}
     </div>
   )
 }
