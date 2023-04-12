@@ -10,6 +10,15 @@ import { toast } from "react-hot-toast";
 import TodoModal from "./TodoModal";
 import { useEffect, useState } from "react";
 import { CheckButton } from "./Button";
+import { motion } from "framer-motion";
+
+const child = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+    },
+};
 
 const TodoCard = ({ todo }) => {
     const dispatch = useDispatch();
@@ -41,7 +50,10 @@ const TodoCard = ({ todo }) => {
 
     return (
         <>
-            <div className={style.item}>
+            <motion.div
+                variants={child}
+                className={style.item}
+            >
                 <div className={style.todoDetails}>
                     <CheckButton checked={checked} handleUpdateCheck={handleUpdateCheck} />
                     <div className={style.text} onClick={handleEditTodo}>
@@ -89,7 +101,7 @@ const TodoCard = ({ todo }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
             {updateModalOpen && (
                 <TodoModal
                     type="update"

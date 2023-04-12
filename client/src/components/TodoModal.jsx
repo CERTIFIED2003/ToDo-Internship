@@ -10,6 +10,29 @@ import { addTodo, updateTodo } from "../redux/slices/todoSlice";
 import { v4 as uuid } from "uuid";
 // Used for Flash messages
 import { toast } from "react-hot-toast";
+// Used for Animating various html tags
+import { AnimatePresence, motion } from "framer-motion";
+
+const dropAnimate = {
+    hidden: {
+        opacity: 0,
+        transform: 'scale(0.9)',
+    },
+    visible: {
+        transform: 'scale(1)',
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            type: 'spring',
+            damping: 25,
+            stiffness: 500,
+        },
+    },
+    exit: {
+        transform: 'scale(0.9)',
+        opacity: 0,
+    },
+};
 
 const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     const [title, setTitle] = useState("");
@@ -70,61 +93,77 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     }, [type, todo, openModal]);
 
     return (
-        <div className={style.wrapper}>
-            <div className={style.container}>
-                {/* Modal Close Button */}
-                <div
-                    className={style.closeBtn}
-                    onClick={() => setOpenModal(false)}
-                    role="button"
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={style.wrapper}
+            >
+                <motion.div
+                    variants={dropAnimate}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className={style.container}
                 >
-                    <MdOutlineClose />
-                </div>
-                {/* Add Task Form */}
-                <form className={style.form} onSubmit={(e) => handleCreateTask(e)}>
-                    <h1 className={style.formTitle}>
-                        {type === "update" ? "Update Task" : "Create Task"}
-                    </h1>
-                    {/* Input for Task's Title */}
-                    <label htmlFor="title">
-                        Title
-                        <input
-                            id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                    </label>
-                    {/* Select for Task's Status */}
-                    <label htmlFor="status">
-                        Status
-                        <select
-                            name="status"
-                            id="status"
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                        >
-                            <option value="pending">Pending</option>
-                            <option value="canceled">Canceled</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </label>
-                    <div className={style.buttonContainer}>
-                        <ClickButton
-                            text="Close"
-                            variant="buttonSecondary"
-                            type="button"
-                            onClick={() => setOpenModal(false)}
-                            role="button"
-                        />
-                        <ClickButton
-                            text={type === "update" ? "Update" : "Add Task"}
-                            variant="buttonPrimary"
-                            type="submit"
-                        />
-                    </div>
-                </form>
-            </div>
-        </div>
+                    {/* Modal Close Button */}
+                    <motion.div
+                        initial={{ top: 40, opacity: 0 }}
+                        animate={{ top: -10, opacity: 1 }}
+                        exit={{ top: 40, opacity: 0 }}
+                        className={style.closeBtn}
+                        onClick={() => setOpenModal(false)}
+                        role="button"
+                    >
+                        <MdOutlineClose />
+                    </motion.div>
+                    {/* Add Task Form */}
+                    <form className={style.form} onSubmit={(e) => handleCreateTask(e)}>
+                        <h1 className={style.formTitle}>
+                            {type === "update" ? "Update Task" : "Create Task"}
+                        </h1>
+                        {/* Input for Task's Title */}
+                        <label htmlFor="title">
+                            Title
+                            <input
+                                id="title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </label>
+                        {/* Select for Task's Status */}
+                        <label htmlFor="status">
+                            Status
+                            <select
+                                name="status"
+                                id="status"
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
+                            >
+                                <option value="pending">Pending</option>
+                                <option value="canceled">Canceled</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </label>
+                        <div className={style.buttonContainer}>
+                            <ClickButton
+                                text="Close"
+                                variant="buttonSecondary"
+                                type="button"
+                                onClick={() => setOpenModal(false)}
+                                role="button"
+                            />
+                            <ClickButton
+                                text={type === "update" ? "Update" : "Add Task"}
+                                variant="buttonPrimary"
+                                type="submit"
+                            />
+                        </div>
+                    </form>
+                </motion.div>
+            </motion.div>
+        </AnimatePresence>
     )
 }
 
