@@ -2,9 +2,18 @@ import { ClickButton, SelectButton } from "./Button";
 import style from "../styles/modules/app.module.scss";
 import TodoModal from "./TodoModal";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFilterStatus } from "../redux/slices/todoSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const filteredStatus = useSelector(state => state.todo.filteredStatus);
+
   const [openModal, setOpenModal] = useState(false);
+
+  const updateFilter = (e) => {
+    dispatch(updateFilterStatus(e.target.value));
+  };
 
   return (
     <div className={style.appHeader}>
@@ -17,11 +26,15 @@ const Header = () => {
       />
 
       {/* Select tag for displaying sorted task list based on their status ( pending, canceled, completed ) */}
-      <SelectButton id="status">
-        <option value="all">All</option>
-        <option value="pending">Pending</option>
-        <option value="canceled">Canceled</option>
-        <option value="completed">Completed</option>
+      <SelectButton
+        id="status"
+        value={filteredStatus}
+        onChange={updateFilter}
+      >
+        <option value="all">ALL</option>
+        <option className={style.pending} value="pending">PENDING</option>
+        <option className={style.canceled} value="canceled">CANCELED</option>
+        <option className={style.completed} value="completed">COMPLETED</option>
       </SelectButton>
 
       {/* Modal to create a To-Do list's task */}
