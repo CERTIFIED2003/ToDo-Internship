@@ -1,26 +1,40 @@
 @import '../smallDevice.scss';
 
-.title {
-	display: inline-block;
-	width: 100%;
-	font-family: 'Poppins';
-	font-size: 4rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 2rem;
-	margin-bottom: 1.5rem;
-	color: var(--primaryPurple);
-	cursor: pointer;
+a {
+	text-decoration: none;
 
-	&:hover {
-		transition: all;
-		scale: 0.9;
-		transition-duration: 500ms;
-	}
+	.title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		font-family: 'Poppins';
+		font-size: 4rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		text-align: center;
+		margin: 0 auto;
+		margin-top: 2rem;
+		margin-bottom: 1.5rem;
+		color: var(--primaryPurple);
+		cursor: pointer;
 
-	@include smallDeviceSize {
-		font-size: 3rem;
+		&:hover {
+			transition: all;
+			scale: 0.9;
+			transition-duration: 500ms;
+		}
+
+		.titleImg {
+			width: 30px;
+			height: 30px;
+			object-fit: cover;
+			border-radius: 50%;
+			margin-left: 0.5rem;
+		}
+
+		@include smallDeviceSize {
+			font-size: 3rem;
+		}
 	}
 }
