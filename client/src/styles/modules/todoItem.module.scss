@@ -9,6 +9,7 @@
 	background: var(--white);
 	margin-bottom: 1.5rem;
 	border-radius: 4px;
+	cursor: default;
 
 	&:hover {
 		scale: 0.95;
@@ -54,10 +55,11 @@
 	}
 }
 
-.texts {
+.text {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .todoText {

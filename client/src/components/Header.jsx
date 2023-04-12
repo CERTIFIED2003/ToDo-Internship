@@ -27,6 +27,8 @@ const Header = () => {
       {/* Modal to create a To-Do list's task */}
       {openModal && (
         <TodoModal
+          type="add"
+          openModal={openModal}
           setOpenModal={setOpenModal}
         />
       )}

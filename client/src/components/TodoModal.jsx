@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
 // Used for Flash messages
 import { toast } from "react-hot-toast";
 
-const TodoModal = ({ type, modalOpen, setOpenModal, todo }) => {
+const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     const [title, setTitle] = useState("");
     const [status, setStatus] = useState("pending");
     const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const TodoModal = ({ type, modalOpen, setOpenModal, todo }) => {
             setTitle("");
             setStatus("pending");
         }
-    }, [type, todo, modalOpen]);
+    }, [type, todo, openModal]);
 
     return (
         <div className={style.wrapper}>

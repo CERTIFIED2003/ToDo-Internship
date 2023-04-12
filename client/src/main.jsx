@@ -17,10 +17,10 @@ import "@fontsource/poppins/700.css";
 // Importing Provider to work with Redux
 import { Provider } from 'react-redux';
 // Importing Store for Provider's store parameter
-import { store } from './redux/store';
+import { Store } from './redux/store/Store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
+  <Provider store={Store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

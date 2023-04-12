@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 import style from "../styles/modules/todoItem.module.scss";
 import { getClasses } from "../utils/getClasses";
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit, MdOutlinePendingActions } from "react-icons/md";
+import { BsCheck2All } from "react-icons/bs";
+import { TfiClose } from "react-icons/tfi";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../redux/slices/todoSlice";
 import { toast } from "react-hot-toast";
@@ -26,7 +28,7 @@ const TodoCard = ({ todo }) => {
             <div className={style.item}>
                 <div className={style.todoDetails}>
                     [ ]
-                    <div className={style.text}>
+                    <div className={style.text} onClick={handleEditTodo}>
                         <p className={
                             getClasses([style.todoText,
                             todo.status === "completed" ? style["todoText--completed"]
@@ -36,17 +38,22 @@ const TodoCard = ({ todo }) => {
                         }
                         >
                             {todo.title}
-                            {` `}
-                            {
+                            {/* {` `} */}
+                            {/* {
                                 todo.status === "completed" ? "[✔]"
                                     : todo.status === "pending" ? ""
                                         : "[✖]"
-                            }
+                            } */}
                         </p>
                         <p className={style.time}>
                             {format(new Date(todo.time), "p, dd/MM/yyyy")}
                         </p>
                     </div>
+                    {
+                        todo.status === "completed" ? <BsCheck2All size={20} />
+                            : todo.status === "pending" ? <MdOutlinePendingActions size={20} style={{ opacity: "0.65" }} />
+                                : <TfiClose size={15} />
+                    }
                 </div>
                 <div className={style.todoActions}>
                     <div
@@ -68,7 +75,7 @@ const TodoCard = ({ todo }) => {
             {updateModalOpen && (
                 <TodoModal
                     type="update"
-                    modalOpen={updateModalOpen}
+                    openModal={updateModalOpen}
                     setOpenModal={setUpdateModalOpen}
                     todo={todo}
                 />
