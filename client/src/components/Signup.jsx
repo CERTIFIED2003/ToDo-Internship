@@ -48,7 +48,6 @@ const Signup = ({ setAuthMethod }) => {
             .finally(() => {
                 setLoading(false);
             });
-        console.log(user);
     }
 
     return (

@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import ProfileModal from "./components/ProfileModal";
+import { userAutoLogin } from "./redux/slices/todoSlice";
 
 const App = () => {
   // Backend call at "/" for starting server if it's inactive for long duration
@@ -17,9 +19,11 @@ const App = () => {
 
   const userInfo = useSelector(state => state.todo.user);
   const [authMethod, setAuthMethod] = useState(0);
+  const [profileModal, setProfileModal] = useState(false);
 
   useEffect(() => {
     if (userInfo.length > 0) {
+      userAutoLogin();
       setAuthMethod(2);
     }
     else {
@@ -33,6 +37,7 @@ const App = () => {
         <Title
           title="TODO APP"
           user={userInfo[0]}
+          setProfileModal={setProfileModal}
         />
         {authMethod === 2 && (
           <div className={style.appWrapper}>
@@ -43,6 +48,13 @@ const App = () => {
         {authMethod !== 2 && (
           <Authentication
             authMethod={authMethod}
+            setAuthMethod={setAuthMethod}
+          />
+        )}
+        {profileModal && (
+          <ProfileModal 
+            user={userInfo[0]}
+            setProfileModal={setProfileModal}
             setAuthMethod={setAuthMethod}
           />
         )}

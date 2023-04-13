@@ -1,6 +1,9 @@
-import style from "../styles/modules/modal.module.scss";
+import style from "../styles/modules/profile.module.scss";
 import { MdOutlineClose } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
+import { ClickButton } from "./Button";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../redux/slices/todoSlice";
 
 const dropAnimate = {
     hidden: {
@@ -23,7 +26,18 @@ const dropAnimate = {
     },
 };
 
-const ProfileModal = ({ setModalOpen }) => {
+const ProfileModal = ({ user, setProfileModal, setAuthMethod }) => {
+    const dispatch = useDispatch();
+    const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+    const handleLogout = () => {
+        setProfileModal(false);
+        dispatch((userLogout(
+            user
+        )));
+        setAuthMethod(0);
+    };
+
     return (
         <AnimatePresence>
             <motion.div
@@ -45,12 +59,34 @@ const ProfileModal = ({ setModalOpen }) => {
                         animate={{ top: -10, opacity: 1 }}
                         exit={{ top: 40, opacity: 0 }}
                         className={style.closeBtn}
+                        onClick={() => setProfileModal(false)}
                         role="button"
-                        onClick={() => setModalOpen(false)}
                     >
                         <MdOutlineClose />
                     </motion.div>
-
+                    <div className={style.userWrapper}>
+                        <div className={style.userTitle}>
+                            <div className={style.userImg}>
+                                <img
+                                    src={`${backendURL}/${user?.avatar}`}
+                                    alt={user?.name}
+                                />
+                            </div>
+                            {user?.name}
+                        </div>
+                        <div className={style.credInfo}>
+                            <p>Email: {user?.email}</p>
+                            <p>Password: {`${user?.password[0]}........${user?.password[user?.password?.length - 1]}`}</p>
+                        </div>
+                        <div className={style.buttonContainer}>
+                            <ClickButton
+                                text="Logout"
+                                variant="buttonSecondary"
+                                type="button"
+                                onClick={handleLogout}
+                            />
+                        </div>
+                    </div>
                 </motion.div>
             </motion.div>
         </AnimatePresence>

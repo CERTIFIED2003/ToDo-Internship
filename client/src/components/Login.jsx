@@ -23,7 +23,7 @@ const Login = ({ setAuthMethod }) => {
                     email,
                     password,
                 }
-            ); console.log(data);
+            );
             toast.success("Login Successfull!");
             setAuthMethod(2);
             dispatch(userLogin({

@@ -39,6 +39,22 @@ export const todoSlice = createSlice({
                 state.user.push(action.payload);
             }
         },
+
+        userLogout: (state, action) => {
+            const userInfo = localStorage.getItem("user");
+            if (userInfo) {
+                localStorage.removeItem("user", JSON.stringify([{ ...action.payload }]));
+                state.user.pop(action.payload);
+            }
+        },
+
+        userAutoLogin: () => {
+            const userInfo = localStorage.getItem("user");
+            if (userInfo) {
+                userLogin(userInfo);
+            }
+        },
+
         addTodo: (state, action) => {
             state.todoList.push(action.payload);
             // Getting User's todo list from Localstorage
@@ -55,6 +71,7 @@ export const todoSlice = createSlice({
             }
             else localStorage.setItem("todoList", JSON.stringify([{ ...action.payload }]));
         },
+
         deleteTodo: (state, action) => {
             const todoList = localStorage.getItem("todoList");
 
@@ -69,6 +86,7 @@ export const todoSlice = createSlice({
                 state.todoList = todoListArr;
             }
         },
+
         updateTodo: (state, action) => {
             const todoList = localStorage.getItem("todoList");
             if (todoList) {
@@ -85,6 +103,7 @@ export const todoSlice = createSlice({
                 state.todoList = todoListArr;
             }
         },
+
         updateFilterStatus: (state, action) => {
             state.filteredStatus = action.payload;
         },
@@ -93,6 +112,8 @@ export const todoSlice = createSlice({
 
 export const {
     userLogin,
+    userLogout,
+    userAutoLogin,
     addTodo,
     deleteTodo,
     updateTodo,
