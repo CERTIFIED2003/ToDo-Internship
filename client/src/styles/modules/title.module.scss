@@ -7,11 +7,10 @@ a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
+		width: 40%;
 		font-family: 'Poppins';
 		font-size: 4rem;
 		font-weight: 700;
-		text-transform: uppercase;
 		text-align: center;
 		margin: 0 auto;
 		margin-top: 2rem;
@@ -24,10 +23,50 @@ a {
 			height: 30px;
 			object-fit: cover;
 			border-radius: 50%;
-			margin-left: 0.5rem;
+		}
+
+		.wrapper {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.userInfo {
+				display: flex;
+				height: 40px;
+				align-items: center;
+				justify-content: center;
+				background-color: var(--primaryPurple);
+				border-radius: 20px;
+				padding: 10px;
+				transition: all;
+				transition-duration: 500ms;
+
+				&:hover {
+					background-color: var(--gray-2);
+				}
+
+				&:hover .userName {
+					color: var(--primaryPurple);
+				}
+
+				.userName {
+					margin-left: 5px;
+					display: inline-block;
+					font-size: 2rem;
+					font-weight: 500;
+					color: var(--white);
+
+					@include smallDeviceSize {
+						display: none;
+					}
+				}
+			}
 		}
 
 		@include smallDeviceSize {
+			width: 90%;
+			justify-content: space-between;
 			font-size: 3rem;
 		}
 	}

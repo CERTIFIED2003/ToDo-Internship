@@ -33,19 +33,11 @@ export const todoSlice = createSlice({
     initialState: initialValue,
     reducers: {
         userLogin: (state, action) => {
-            state.todoList.push(action.payload);
-            // Getting User's login info from Localstorage
             const userInfo = localStorage.getItem("user");
             if (userInfo) {
-                const user = JSON.parse(userInfo);
-                user.push({
-                    ...action.payload,
-                });
-                localStorage.setItem("user", JSON.stringify(user));
-                console.log("User", user);
+                localStorage.setItem("user", JSON.stringify([{ ...action.payload }]));
+                state.user.push(action.payload);
             }
-            else localStorage.setItem("user", JSON.stringify([{ ...action.payload }]));
-            console.log("UserInfo", userInfo);
         },
         addTodo: (state, action) => {
             state.todoList.push(action.payload);

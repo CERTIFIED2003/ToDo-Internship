@@ -1,10 +1,7 @@
-import { useState } from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
-const Authentication = () => {
-  const [authMethod, setAuthMethod] = useState(1);
-
+const Authentication = ({ authMethod, setAuthMethod }) => {
   return (
     <>
       {authMethod === 0 ? (

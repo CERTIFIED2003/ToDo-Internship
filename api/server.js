@@ -7,6 +7,7 @@ const { readdirSync } = require("fs");
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use("/", express.static("uploads"));
 
 // CORS
 const corsOptions = {

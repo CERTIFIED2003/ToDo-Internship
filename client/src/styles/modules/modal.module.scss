@@ -107,6 +107,40 @@
 	}
 }
 
+.avatarContainer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	button {
+		padding: 10px;
+		border: none;
+		outline: none;
+		border-radius: 20px;
+		background-color: cyan;
+		cursor: pointer;
+		transition: all;
+		transition-duration: 500ms;
+
+		h1 {
+			color: white;
+			font-size: 1.4rem;
+		}
+
+		&:hover {
+			background-color: var(--primaryPurple);
+		} 
+	}
+}
+
+
 .buttonContainer {
 	display: flex;
 	justify-content: flex-end;

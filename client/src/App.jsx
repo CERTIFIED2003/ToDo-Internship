@@ -6,17 +6,41 @@ import {
   Authentication
 } from "./components";
 import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const userInfo = useSelector(state => state.todo.user);
+  const [authMethod, setAuthMethod] = useState(0);
+
+  useEffect(() => {
+    if (userInfo.length > 0) {
+      setAuthMethod(2);
+    }
+    else {
+      setAuthMethod(0);
+    }
+  }, [userInfo.length]);
+
   return (
     <>
       <div>
-        <Title title="TODO APP" />
-        <div className={style.appWrapper}>
-          <Header />
-          <ListContainer />
-        </div>
-        <Authentication />
+        <Title
+          title="TODO APP"
+          user={userInfo[0]}
+        />
+        {authMethod === 2 && (
+          <div className={style.appWrapper}>
+            <Header />
+            <ListContainer />
+          </div>
+        )}
+        {authMethod !== 2 && (
+          <Authentication
+            authMethod={authMethod}
+            setAuthMethod={setAuthMethod}
+          />
+        )}
       </div>
 
       <Toaster
