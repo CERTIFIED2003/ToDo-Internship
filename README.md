@@ -1,5 +1,25 @@
 # Project : To-Do List
 
+## .env Variables
+### `client` Directory:
+Create a new `.env` file and then declare & initialize this new variable
+```
+VITE_BACKEND_URL = http://localhost:8000
+```
+
+### `api` Directory:
+Create a new `.env` file and then declare & initialize this new variable
+```
+PORT = 8000
+MONGODB_URL = mongodb+srv://lalshubham027:lalshubham027@cluster0.rf5fcbs.mongodb.net/?retryWrites=true&w=majority
+```
+
+```
+NOTE:
+During deployement change the VITE_BACKEND_URL to your hosted Backend URL.
+Also, replace the MONGODB_URL with your own MongoDB Cluster's Database URL.
+```
+
 ## Deployed Site
 [App Preview 🚀](https://todo-tgh.netlify.app)
 

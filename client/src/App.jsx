@@ -52,7 +52,7 @@ const App = () => {
           />
         )}
         {profileModal && userInfo.length > 0 && (
-          <ProfileModal 
+          <ProfileModal
             user={userInfo[0]}
             setProfileModal={setProfileModal}
             setAuthMethod={setAuthMethod}
@@ -65,7 +65,8 @@ const App = () => {
           style: {
             fontSize: "1.4rem"
           },
-          duration: 5000
+          duration: 5000,
+          position: "bottom-center",
         }}
       />
     </>
