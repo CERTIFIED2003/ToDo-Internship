@@ -10,10 +10,12 @@ const Login = ({ setAuthMethod }) => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassowrd] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         if (email === "" || password === "") return toast.error("Please Enter the Credentials!");
+        setLoading(true);
         try {
             const backendURL = import.meta.env.VITE_BACKEND_URL;
             const { data } = await axios.post(`${backendURL}/login`,
@@ -35,6 +37,9 @@ const Login = ({ setAuthMethod }) => {
         catch (error) {
             toast.error(error.response.data.message || "Something went wrong... Try again!");
             console.log(error.response.data);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -74,9 +79,10 @@ const Login = ({ setAuthMethod }) => {
                             onClick={() => setAuthMethod(1)}
                         />
                         <ClickButton
-                            text="Login"
+                            text={loading ? "Wait" : "Login"}
                             variant="buttonPrimary"
                             type="submit"
+                            disabled={loading}
                         />
                     </div>
                 </form>

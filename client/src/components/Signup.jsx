@@ -19,16 +19,11 @@ const Signup = ({ setAuthMethod }) => {
 
     const handleCreateAccount = async (e) => {
         e.preventDefault();
-        // if (!email || !name || !password || !confirmPassword || !avatar) return toast.error("Please fill in the complete form!");
-        // if (password !== confirmPassword) return toast.error("Password doesn't match!");
+        if (!email || !name || !password || !confirmPassword || !avatar) return toast.error("Please fill in the complete form!");
+        if (password !== confirmPassword) return toast.error("Password doesn't match!");
         setLoading(true);
         const backendURL = import.meta.env.VITE_BACKEND_URL;
 
-        const newForm = new FormData();
-        // newForm.append("email", email);
-        // newForm.append("name", name);
-        // newForm.append("password", password);
-        // const myFile = newForm.append("file", avatar);
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
         const user = await axios.post(`${backendURL}/signup`,
@@ -144,7 +139,7 @@ const Signup = ({ setAuthMethod }) => {
                             onClick={() => setAuthMethod(0)}
                         />
                         <ClickButton
-                            text="Create"
+                            text={loading ? "Creating..." : "Create"}
                             variant="buttonPrimary"
                             type="submit"
                             disabled={loading}

@@ -8,8 +8,13 @@ import {
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const App = () => {
+  // Backend call at "/" for starting server if it's inactive for long duration
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  axios.get(`${backendURL}/`);
+
   const userInfo = useSelector(state => state.todo.user);
   const [authMethod, setAuthMethod] = useState(0);
 
