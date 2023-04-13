@@ -36,6 +36,7 @@ const dropAnimate = {
 
 const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     const [title, setTitle] = useState("");
+    const [priority, setPriority] = useState(1);
     const [status, setStatus] = useState("pending");
     const dispatch = useDispatch();
 
@@ -58,6 +59,7 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
             dispatch(addTodo({
                 id: uuid(),
                 title,
+                priority,
                 status,
                 time: new Date().toLocaleString(),
             }));
@@ -67,10 +69,11 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
 
         // If type= update, then update the current task
         if (type === "update") {
-            if (todo.title !== title || todo.status !== status) {
+            if (todo.title !== title || todo.status !== status || todo.priority !== priority) {
                 dispatch(updateTodo({
                     ...todo,
                     title,
+                    priority,
                     status,
                     time: new Date().toLocaleString(),
                 }));
@@ -84,10 +87,12 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     useEffect(() => {
         if (type === "update" && todo) {
             setTitle(todo.title);
+            setPriority(todo.priority);
             setStatus(todo.status);
         }
         else {
             setTitle("");
+            setPriority(1);
             setStatus("pending");
         }
     }, [type, todo, openModal]);
@@ -132,6 +137,20 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
                         </label>
+                        {/* Select for Priority */}
+                        <label htmlFor="priority">
+                            Priority
+                            <select
+                                name="priority"
+                                id="priority"
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}
+                            >
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
+                                ))}
+                            </select>
+                        </label>
                         {/* Select for Task's Status */}
                         <label htmlFor="status">
                             Status
@@ -140,6 +159,7 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
                                 id="status"
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
+                                className={style.selectTag}
                             >
                                 <option value="pending">Pending</option>
                                 <option value="canceled">Canceled</option>

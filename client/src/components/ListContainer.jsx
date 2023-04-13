@@ -23,14 +23,25 @@ const child = {
 };
 
 const ListContainer = () => {
+  var filteredTodoList = [];
   const todoList = useSelector(state => state.todo.todoList);
-  const sortedTodoList = [...todoList].sort((a, b) => new Date(b.time) - new Date(a.time));
+  // const sortedTodoList = [...todoList].sort((a, b) => new Date(b.time) - new Date(a.time)).sort((a, b) => a.priority - b.priority);
+  const sortedTodoList = [...todoList].sort((a, b) => a.priority - b.priority);
+  const timeFilter = [...todoList].sort((a, b) => new Date(b.time) - new Date(a.time));
 
   const filteredStatus = useSelector(state => state.todo.filteredStatus);
-  const filteredTodoList = sortedTodoList.filter(item => {
-    if (filteredStatus === "all") return true;
-    return item.status === filteredStatus;
-  });
+
+  if (filteredStatus !== "time") {
+    filteredTodoList = sortedTodoList.filter(item => {
+      if (filteredStatus === "all") return true;
+      return item.status === filteredStatus;
+    });
+  }
+  else {
+    filteredTodoList = timeFilter.filter(item => {
+      return filteredStatus;
+    });
+  }
 
   return (
     <motion.div

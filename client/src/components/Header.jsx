@@ -32,6 +32,7 @@ const Header = () => {
         onChange={updateFilter}
       >
         <option value="all">ALL</option>
+        <option value="time" className={style.time}>TIME</option>
         <option className={style.pending} value="pending">PENDING</option>
         <option className={style.canceled} value="canceled">CANCELED</option>
         <option className={style.completed} value="completed">COMPLETED</option>

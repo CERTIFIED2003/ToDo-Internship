@@ -57,6 +57,7 @@ export const todoSlice = createSlice({
                 todoListArr.forEach((todo) => {
                     if (todo.id === action.payload.id) {
                         todo.title = action.payload.title;
+                        todo.priority = action.payload.priority;
                         todo.status = action.payload.status;
                         todo.time = action.payload.time;
                     }

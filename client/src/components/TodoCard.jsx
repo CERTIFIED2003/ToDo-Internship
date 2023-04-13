@@ -79,11 +79,16 @@ const TodoCard = ({ todo }) => {
                     </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    {
-                        todo.status === "completed" ? <BsCheck2All size={20} />
-                            : todo.status === "pending" ? <MdOutlinePendingActions size={20} style={{ opacity: "0.65" }} />
-                                : <TfiClose size={19} />
-                    }
+                    <div className={style.priority}>
+                        Priority-{todo.priority}
+                    </div>
+                    <div className={style.status}>
+                        {
+                            todo.status === "completed" ? <BsCheck2All size={20} />
+                                : todo.status === "pending" ? <MdOutlinePendingActions size={20} style={{ opacity: "0.65" }} />
+                                    : <TfiClose size={19} />
+                        }
+                    </div>
                     <div className={style.todoActions}>
                         <div
                             className={style.icon}

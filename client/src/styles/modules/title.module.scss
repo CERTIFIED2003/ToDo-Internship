@@ -19,12 +19,6 @@ a {
 		color: var(--primaryPurple);
 		cursor: pointer;
 
-		&:hover {
-			transition: all;
-			scale: 0.9;
-			transition-duration: 500ms;
-		}
-
 		.titleImg {
 			width: 30px;
 			height: 30px;
