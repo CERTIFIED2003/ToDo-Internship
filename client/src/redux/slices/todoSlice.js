@@ -46,6 +46,7 @@ export const todoSlice = createSlice({
                 localStorage.removeItem("user", JSON.stringify([{ ...action.payload }]));
                 state.user.pop(action.payload);
             }
+            localStorage.setItem("user", JSON.stringify([]));
         },
 
         userAutoLogin: () => {

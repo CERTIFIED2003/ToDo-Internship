@@ -51,7 +51,7 @@ const App = () => {
             setAuthMethod={setAuthMethod}
           />
         )}
-        {profileModal && (
+        {profileModal && userInfo.length > 0 && (
           <ProfileModal 
             user={userInfo[0]}
             setProfileModal={setProfileModal}

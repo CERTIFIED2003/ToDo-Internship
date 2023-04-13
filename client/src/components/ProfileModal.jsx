@@ -76,7 +76,7 @@ const ProfileModal = ({ user, setProfileModal, setAuthMethod }) => {
                         </div>
                         <div className={style.credInfo}>
                             <p>Email: {user?.email}</p>
-                            <p>Password: {`${user?.password[0]}........${user?.password[user?.password?.length - 1]}`}</p>
+                            <p>Password: {`${user?.password[0]}****${user?.password[user?.password?.length - 1]}`}</p>
                         </div>
                         <div className={style.buttonContainer}>
                             <ClickButton
