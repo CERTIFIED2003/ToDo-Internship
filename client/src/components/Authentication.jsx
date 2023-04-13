@@ -3,7 +3,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 
 const Authentication = () => {
-  const [authMethod, setAuthMethod] = useState(0);
+  const [authMethod, setAuthMethod] = useState(1);
 
   return (
     <>

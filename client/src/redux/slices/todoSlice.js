@@ -1,5 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialUser = () => {
+    // We are getting localstorage's user data and storing them to localUser
+    const localUser = localStorage.getItem("user");
+
+    // If there is data in localstorage about user, then we're parsing it and returning it from this function call
+    if (localUser) return JSON.parse(localUser);
+    // If we don't find user's data in localstorage, then we're setting an empty array in localstorage's user and returning an empty array from this function call
+    localStorage.setItem("user", JSON.stringify([]));
+    return [];
+};
+
 const getInitialTodos = () => {
     // We are getting localstorage's todoList data and storing them to localTodoList
     const localTodoList = localStorage.getItem("todoList");
@@ -12,6 +23,7 @@ const getInitialTodos = () => {
 };
 
 const initialValue = {
+    user: getInitialUser(),
     todoList: getInitialTodos(),
     filteredStatus: "all",
 };
@@ -20,6 +32,21 @@ export const todoSlice = createSlice({
     name: "todo",
     initialState: initialValue,
     reducers: {
+        userLogin: (state, action) => {
+            state.todoList.push(action.payload);
+            // Getting User's login info from Localstorage
+            const userInfo = localStorage.getItem("user");
+            if (userInfo) {
+                const user = JSON.parse(userInfo);
+                user.push({
+                    ...action.payload,
+                });
+                localStorage.setItem("user", JSON.stringify(user));
+                console.log("User", user);
+            }
+            else localStorage.setItem("user", JSON.stringify([{ ...action.payload }]));
+            console.log("UserInfo", userInfo);
+        },
         addTodo: (state, action) => {
             state.todoList.push(action.payload);
             // Getting User's todo list from Localstorage
@@ -73,6 +100,7 @@ export const todoSlice = createSlice({
 });
 
 export const {
+    userLogin,
     addTodo,
     deleteTodo,
     updateTodo,

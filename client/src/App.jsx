@@ -16,7 +16,7 @@ const App = () => {
           <Header />
           <ListContainer />
         </div>
-        {/* <Authentication /> */}
+        <Authentication />
       </div>
 
       <Toaster
