@@ -49,11 +49,6 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
             toast.error("Title shouldn't be empty!");
             return;
         }
-        // If User didn't input any Description of the task show him Error
-        if (description === "") {
-            toast.error("Description shouldn't be empty!");
-            return;
-        }
         // If User changes status to empty string by javascript from client side then show his Error
         if (status === "") {
             toast.error("Status shouldn't be empty!");
