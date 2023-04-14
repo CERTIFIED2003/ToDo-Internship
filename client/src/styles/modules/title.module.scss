@@ -1,4 +1,5 @@
 @import '../smallDevice.scss';
+@import '../mediumDevice.scss';
 
 a {
 	text-decoration: none;
@@ -60,8 +61,26 @@ a {
 					@include smallDeviceSize {
 						display: none;
 					}
+
+					@include mediumDeviceSize {
+						display: none;
+					}
+				}
+
+				@include smallDeviceSize {
+					width: 40px;
+					border-radius: 50%;
+					padding: 0;
+				}
+				
+				@include mediumDeviceSize {
+					width: 40px;
+					border-radius: 50%;
+					padding: 0;
 				}
 			}
+
+
 		}
 
 		@include smallDeviceSize {

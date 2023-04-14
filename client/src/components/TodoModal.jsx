@@ -36,6 +36,7 @@ const dropAnimate = {
 
 const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [priority, setPriority] = useState(1);
     const [status, setStatus] = useState("pending");
     const dispatch = useDispatch();
@@ -46,6 +47,11 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
         // If User didn't input any Title show him Error
         if (title === "") {
             toast.error("Title shouldn't be empty!");
+            return;
+        }
+        // If User didn't input any Description of the task show him Error
+        if (description === "") {
+            toast.error("Description shouldn't be empty!");
             return;
         }
         // If User changes status to empty string by javascript from client side then show his Error
@@ -59,6 +65,7 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
             dispatch(addTodo({
                 id: uuid(),
                 title,
+                description,
                 priority,
                 status,
                 time: new Date().toLocaleString(),
@@ -69,10 +76,11 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
 
         // If type= update, then update the current task
         if (type === "update") {
-            if (todo.title !== title || todo.status !== status || todo.priority !== priority) {
+            if (todo.title !== title || todo.description !== description || todo.status !== status || todo.priority !== priority) {
                 dispatch(updateTodo({
                     ...todo,
                     title,
+                    description,
                     priority,
                     status,
                     time: new Date().toLocaleString(),
@@ -87,11 +95,13 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
     useEffect(() => {
         if (type === "update" && todo) {
             setTitle(todo.title);
+            setDescription(todo.description);
             setPriority(todo.priority);
             setStatus(todo.status);
         }
         else {
             setTitle("");
+            setDescription("");
             setPriority(1);
             setStatus("pending");
         }
@@ -135,6 +145,15 @@ const TodoModal = ({ type, openModal, setOpenModal, todo }) => {
                                 id="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </label>
+                        {/* Input for Task's Description */}
+                        <label htmlFor="desc">
+                            Description
+                            <input
+                                id="desc"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                         </label>
                         {/* Select for Priority */}

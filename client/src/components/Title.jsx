@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 // Importing Title's style (.scss format - Is a SAAS)
 import style from "../styles/modules/title.module.scss";
-import ProfileModal from "./ProfileModal";
 
 const Title = ({ title, user, setProfileModal }) => {
   const backendURL = import.meta.env.VITE_BACKEND_URL;
