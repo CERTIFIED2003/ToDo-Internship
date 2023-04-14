@@ -8,34 +8,32 @@ const Title = ({ title, user, setProfileModal }) => {
   const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   return (
-    <Link to="/">
-      <div className={style.title}>
-        <div className={style.wrapper}>
-          {title}
-          {user ? (
-            <div
-              className={style.userInfo}
-              onClick={() => setProfileModal(true)}
-            >
-              <img
-                src={`${backendURL}/${user.avatar}`}
-                alt="logo"
-                className={style.titleImg}
-              />
-              <p className={style.userName}>
-                {user.name}
-              </p>
-            </div>
-          ) : (
+    <div className={style.title}>
+      <div className={style.wrapper}>
+        <Link to="/">{title}</Link>
+        {user ? (
+          <div
+            className={style.userInfo}
+            onClick={() => setProfileModal(true)}
+          >
             <img
-              src="/logo.png"
+              src={`${backendURL}/${user.avatar}`}
               alt="logo"
               className={style.titleImg}
             />
-          )}
-        </div>
+            <p className={style.userName}>
+              {user.name}
+            </p>
+          </div>
+        ) : (
+          <img
+            src="/logo.png"
+            alt="logo"
+            className={style.titleImg}
+          />
+        )}
       </div>
-    </Link>
+    </div>
   )
 }
 
