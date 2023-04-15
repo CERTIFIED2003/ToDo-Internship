@@ -11,7 +11,7 @@
 	font-weight: 700;
 	text-align: center;
 	margin: 0 auto;
-	margin-top: 2rem;
+	// margin-top: 2rem;
 	margin-bottom: 1.5rem;
 	color: var(--primaryPurple);
 
@@ -33,56 +33,67 @@
 			color: var(--primaryPurple);
 		}
 
-		.userInfo {
+		.right {
 			display: flex;
-			height: 40px;
 			align-items: center;
-			justify-content: center;
-			background-color: var(--primaryPurple);
-			border-radius: 20px;
-			padding: 10px;
-			transition: all;
-			transition-duration: 500ms;
-			cursor: pointer;
+			justify-content: flex-end;
+			gap: 10px;
 
-			&:hover {
-				background-color: var(--gray-2);
+			.theme {
+				padding-top: 15px;
+				cursor: pointer;
+				color: white;
 			}
 
-			&:hover .userName {
-				color: var(--primaryPurple);
-			}
+			.userInfo {
+				display: flex;
+				height: 40px;
+				align-items: center;
+				justify-content: center;
+				background-color: var(--primaryPurple);
+				border-radius: 20px;
+				padding: 10px;
+				transition: all;
+				transition-duration: 500ms;
+				cursor: pointer;
 
-			.userName {
-				margin-left: 5px;
-				display: inline-block;
-				font-size: 2rem;
-				font-weight: 500;
-				color: var(--white);
+				&:hover {
+					background-color: var(--gray-2);
+				}
+
+				&:hover .userName {
+					color: var(--primaryPurple);
+				}
+
+				.userName {
+					margin-left: 5px;
+					display: inline-block;
+					font-size: 2rem;
+					font-weight: 500;
+					color: var(--white);
+
+					@include smallDeviceSize {
+						display: none;
+					}
+
+					@include mediumDeviceSize {
+						display: none;
+					}
+				}
 
 				@include smallDeviceSize {
-					display: none;
+					width: 40px;
+					border-radius: 50%;
+					padding: 0;
 				}
 
 				@include mediumDeviceSize {
-					display: none;
+					width: 40px;
+					border-radius: 50%;
+					padding: 0;
 				}
 			}
-
-			@include smallDeviceSize {
-				width: 40px;
-				border-radius: 50%;
-				padding: 0;
-			}
-
-			@include mediumDeviceSize {
-				width: 40px;
-				border-radius: 50%;
-				padding: 0;
-			}
 		}
-
-
 	}
 
 	@include smallDeviceSize {

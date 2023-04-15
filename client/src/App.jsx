@@ -20,6 +20,11 @@ const App = () => {
   const userInfo = useSelector(state => state.todo.user);
   const [authMethod, setAuthMethod] = useState(0);
   const [profileModal, setProfileModal] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(localStorage.getItem("darkTheme"));
+
+  const handleThemeChange = () => {
+    setDarkTheme(prev => !prev);
+  };
 
   useEffect(() => {
     if (userInfo.length > 0) {
@@ -31,13 +36,20 @@ const App = () => {
     }
   }, [userInfo.length]);
 
+  useEffect(() => {
+    localStorage.setItem("darkTheme", darkTheme);
+  }, [darkTheme])
+
   return (
     <>
-      <div>
+      <div className={darkTheme ? "dark" : "light"}>
         <Title
           title="TODO APP"
           user={userInfo[0]}
           setProfileModal={setProfileModal}
+          handleThemeChange={handleThemeChange}
+          darkTheme={darkTheme}
+          setDarkTheme={setDarkTheme}
         />
         {authMethod === 2 && (
           <div className={style.appWrapper}>
