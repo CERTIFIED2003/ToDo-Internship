@@ -1,22 +1,17 @@
 # Project : To-Do List
 
-## Deployed Link
+## DEPLOYED LINKS
 - [Frontend Preview 🚀](https://todo-tgh.netlify.app)
 - [Backend Preview 🚀](https://todo-tgh.onrender.com)
 
-## .env Variables
+## .env SETUP
 ### `client` Directory:
 Create a new `.env` file and then declare & initialize this new variable
 ```
 VITE_BACKEND_URL = http://localhost:8000
 ```
 
-### Backend Endpoints:
-* `"/"` - GET request for starting server if inactive for long time.
 
-* `"/signup"` - POST request for User registration.
-
-* `"/login"` - POST request for Registered User login.
 
 ### `api` Directory:
 Create a new `.env` file and then declare & initialize this new variable
@@ -30,6 +25,14 @@ NOTE:
 During deployement change the VITE_BACKEND_URL to your hosted Backend URL.
 Also, replace the MONGODB_URL with your own MongoDB Cluster's Database URL.
 ```
+
+### BACKEND ENDPOINTS:
+
+* `"/"` - GET request for starting server if inactive for long time.
+
+* `"/signup"` - POST request for User registration.
+
+* `"/login"` - POST request for Registered User login.
 
 ## AIM :
 Create a To-Do List API Using Express and Mongo DB and integrate with a responsive Front-end ( Flutter or React JS ).
