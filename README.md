@@ -1,15 +1,17 @@
 # Project : To-Do List
 
-## Deployed Link
-[Frontend Preview 🚀](https://todo-tgh.netlify.app)
-[Backend Preview 🚀](https://todo-tgh.onrender.com)
+## DEPLOYED LINKS
+- [Frontend Preview 🚀](https://todo-tgh.netlify.app)
+- [Backend Preview 🚀](https://todo-tgh.onrender.com)
 
-## .env Variables
+## .env SETUP
 ### `client` Directory:
 Create a new `.env` file and then declare & initialize this new variable
 ```
 VITE_BACKEND_URL = http://localhost:8000
 ```
+
+
 
 ### `api` Directory:
 Create a new `.env` file and then declare & initialize this new variable
@@ -24,10 +26,18 @@ During deployement change the VITE_BACKEND_URL to your hosted Backend URL.
 Also, replace the MONGODB_URL with your own MongoDB Cluster's Database URL.
 ```
 
-## Aim :
+### BACKEND ENDPOINTS:
+
+* `"/"` - GET request for starting server if inactive for long time.
+
+* `"/signup"` - POST request for User registration.
+
+* `"/login"` - POST request for Registered User login.
+
+## AIM :
 Create a To-Do List API Using Express and Mongo DB and integrate with a responsive Front-end ( Flutter or React JS ).
 
-## Required Features :
+## REQUIRED FEATURES :
 1. Create a task with priority ( 1 - 9 ) ✔️
 2. List the tasks:
     - Requirements:
@@ -42,7 +52,7 @@ Create a To-Do List API Using Express and Mongo DB and integrate with a responsi
 5. Mark as canceled ✔️
 6. Delete a task from list ✔️
 
-## Instructions :
+## INSTRUCTIONS :
 ### API :
 1. Apply `authentication` ( don’t use session - cookie ) ✔️
 2. Proper API Documentation is needed ✔️
