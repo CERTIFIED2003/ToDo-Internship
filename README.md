@@ -11,6 +11,13 @@ Create a new `.env` file and then declare & initialize this new variable
 VITE_BACKEND_URL = http://localhost:8000
 ```
 
+### Backend Endpoints:
+* `"/"` - GET request for starting server if inactive for long time.
+
+* `"signup"` - POST request for User registration.
+
+* `"/login"` - POST request for Registered User login.
+
 ### `api` Directory:
 Create a new `.env` file and then declare & initialize this new variable
 ```
