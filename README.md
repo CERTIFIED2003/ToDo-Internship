@@ -63,3 +63,7 @@ Create a To-Do List API Using Express and Mongo DB and integrate with a responsi
 ### React JS :
 1. `Redux` must be used to manage the global state ✔️
 2. Design as you wish, but should be mobile responsive ✔️
+
+
+## SNAPSHOT :
+![ss](https://user-images.githubusercontent.com/111045472/233840512-0a4ae0c3-c2ad-4024-850f-00f62b216ade.png)
