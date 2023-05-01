@@ -4,6 +4,19 @@
 - [Frontend Preview 🚀](https://todo-tgh.netlify.app)
 - [Backend Preview 🚀](https://todo-tgh.onrender.com)
 
+## Login Credentials
+### For test purpose only (obviously you can do your stuff with it)
+- <b><i>Test User 1</i></b>
+```
+Email: a@b.com
+Password: 1234
+```
+- <b><i>Test User 2</i></b>
+```
+Email: b@c.com
+Password: 123
+```
+
 ## .env SETUP
 ### `client` Directory:
 Create a new `.env` file and then declare & initialize this new variable
